@@ -37,7 +37,8 @@ setup(
             'angel_db_reader = angel_db_manager.angel_db_reader:main',
             'angel_db_reader_debug = angel_db_manager.angel_db_reader_debug:main',
             'angel_db_writer = angel_db_manager.angel_db_writer:main',
-            'angel_db_publisher = angel_db_manager.angel_db_publisher:main'
+            'angel_db_publisher = angel_db_manager.angel_db_publisher:main',
+            'angel_db_version = angel_db_manager.angel_db_version:main'
         ],
     },
 )

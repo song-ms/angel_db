@@ -2,7 +2,6 @@ import os
 from re import X
 
 import sys
-sys.path.append("/home/ros_tms/tms_db/tms_db_manager/scripts")
 import rclpy
 import json
 import copy
@@ -14,13 +13,9 @@ from std_msgs.msg import String
 from angel_msg_db.msg import Angeltest
 from trajectory_msgs.msg import JointTrajectory
 from sensor_msgs.msg import BatteryState
-<<<<<<< HEAD
 from sensor_msgs.msg import Temperature
 from std_msgs.msg import Float64MultiArray
-import socket
-=======
->>>>>>> 4f8bc2d5becc86551e855e6e25a224176bfca53f
-# import angel_db_manager.tms_db_util as db_util
+import socket# import angel_db_manager.tms_db_util as db_util
 
 # client = pymongo.MongoClient('localhost:27017')
 # db = client.angeldb
@@ -30,7 +25,7 @@ MONGO_DB = 'wasp'
 class AngelDbcheck(Node):
     def __init__(self):
         super().__init__("angel_db_pub")
-<<<<<<< HEAD
+
 
         # for Cloud
         # ID = input("ID :")
@@ -60,6 +55,7 @@ class AngelDbcheck(Node):
         self.sub_command = self.create_subscription(Angeltest, "/angel_db_data_command",  self.mongodbcommandWrite, 10)
         self.sub_temp = self.create_subscription(Float64MultiArray, "/cpu_ram_info", self.temperaturewrite, 10)
 
+
     def mongodbbatteryWrite(self, mongomsg):
         db = self.client.wasp.robotpowers
         if mongomsg.percentage > 0 :
@@ -80,7 +76,6 @@ class AngelDbcheck(Node):
         db.insert(senser_db)
         print("insert sensor system data")
 
-=======
         # ID = input("ID :")
         # PW = input("Password :")
         # self.client = pymongo.MongoClient("mongodb+srv://"+ID+":"+PW+"@cluster0.rahyc.mongodb.net/angeldb?retryWrites=true&w=majority")
@@ -115,7 +110,6 @@ class AngelDbcheck(Node):
             # print("11dddddddddddddddddddddddddddddddddddd")
             db.update(id_mongo, post)
 
->>>>>>> 4f8bc2d5becc86551e855e6e25a224176bfca53f
     def batterystateWrite(self, msg):
         self.batterymsg = BatteryState()
         self.batterymsg.voltage = msg.voltage
@@ -198,7 +192,6 @@ class AngelDbcheck(Node):
             result = zip(self.dbmsg.__slots__, slot_types)
             resultSet = set(result)
             # print(attr)
-<<<<<<< HEAD
             # print(result)
             # print(resultSet)
             msg_dict[attr[1:]] = rearrange_value(getattr(self.dbmsg, attr))
@@ -222,18 +215,17 @@ class AngelDbcheck(Node):
             result = zip(self.dbmsg.__slots__, slot_types)
             resultSet = set(result)
             # print(attr)
-=======
->>>>>>> 4f8bc2d5becc86551e855e6e25a224176bfca53f
+
             # print(result)
             # print(resultSet)
             msg_dict[attr[1:]] = rearrange_value(getattr(self.dbmsg, attr))
             
-<<<<<<< HEAD
+
         print(msg_dict)
         self.publisher_command.publish(self.dbmsg)
 
 
-=======
+
         # print(msg_dict)
         self.publisher_state.publish(self.dbmsg)
         # self.get_logger().info("d")
@@ -261,7 +253,6 @@ class AngelDbcheck(Node):
         self.publisher_command.publish(self.dbmsg)
 
 
->>>>>>> 4f8bc2d5becc86551e855e6e25a224176bfca53f
 def rearrange_value(v):
     if isinstance(v, list):
         result = []

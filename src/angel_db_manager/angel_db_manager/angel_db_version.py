@@ -4,6 +4,7 @@ from rclpy.node import Node
 from std_msgs.msg import Bool
 from std_msgs.msg import String
 import pymongo
+import json
 MONGO_HOSTNAME = '192.168.0.243'
 MONGO_PORT = '27017'
 MONGO_DB = 'wasp'
@@ -21,7 +22,7 @@ class MinimalPublisher(Node):
     def timer_callback_liveness(self):
         msg = String()
         msg.data = "0.1"
-        db = self.client.wasp.corever
+        db = self.client.wasp.dbver
         version_db = {"id" : "M30", "version" : msg.data}
         db.insert_one(version_db)
         self.publisher_liveness.publish(msg)
